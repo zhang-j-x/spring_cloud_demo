@@ -1,0 +1,36 @@
+server:
+  port: 889
+spring:
+  application:
+    name: product
+  profiles:
+    active: dev
+  sleuth:
+    sampler:
+      probability: 1
+  cloud:
+    nacos:
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
+        file-extension: yml
+#  zipkin:
+#    base-url: http://192.168.232.88:9411/
+#    sender:
+#      type: web #数据传输方式
+
+mybatis-plus:
+  type-enums-package: com.jx.product.entity.enums
+  mapper-locations: classpath:mapper/*.xml
+  typeAliasesPackage: com.jx.order.entity
+  global-config:
+    id-type: 0
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true
+    lazyLoadingEnabled: true
+    multipleResultSetsEnabled: true

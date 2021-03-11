@@ -1,0 +1,45 @@
+server:
+  port: 888
+spring:
+  application:
+    name: order
+  profiles:
+    active: dev
+  sleuth:
+    sampler:
+      probability: 1
+  cloud:
+    nacos:
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
+        file-extension: yml
+    sentinel:
+      transport:
+        dashboard: localhost:8849
+        port: 8719
+#  zipkin:
+#    base-url: http://192.168.232.88:9411/
+#    sender:
+#      type: web #数据传输方式
+
+seata:
+  enable-auto-data-source-proxy: false
+  tx-service-group: order
+  config:
+    nacos:
+      namespace: ${spring.cloud.nacos.discovery.namespace}
+      server-addr: ${spring.cloud.nacos.discovery.server-addr}
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+
+
+logging:
+  level:
+    com.jx.product.client.ProductClient: DEBUG
+
+
+
+

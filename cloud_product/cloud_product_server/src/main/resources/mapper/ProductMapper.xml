@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jx.product.dao.ProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.jx.product.entity.Product">
+        <id column="product_id" property="productId" />
+        <result column="product_name" property="productName" />
+        <result column="product_price" property="productPrice" />
+        <result column="product_stock" property="productStock" />
+        <result column="product_desc" property="productDesc" />
+        <result column="product_status" property="productStatus" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        product_id, product_name, product_price, product_stock, product_desc, product_status, create_time, create_user
+    </sql>
+
+
+    <update id="updateProductStock" >
+        update product set product_stock = product_stock - #{count} where product_id = #{productId}
+    </update>
+
+</mapper>
