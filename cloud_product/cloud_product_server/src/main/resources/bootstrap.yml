@@ -23,22 +23,24 @@ spring:
 
 seata:
   enable-auto-data-source-proxy: false
-  tx-service-group: my_test_tx_group #这里需要和config.txt 文件中的service.vgroupMapping.my_test_tx_group=default一致
+  tx-service-group: cloud-demo-tx-group
   application-id: ${spring.application.name}
   config:
+    type: nacos
     nacos:
       namespace: ${spring.cloud.nacos.discovery.namespace}
       server-addr: ${spring.cloud.nacos.discovery.server-addr}
       username: ${spring.cloud.nacos.discovery.username}
       password: ${spring.cloud.nacos.discovery.password}
       group: SEATA_GROUP
+
   registry:
+    type: nacos
     nacos:
       namespace: ${spring.cloud.nacos.discovery.namespace}
       server-addr: ${spring.cloud.nacos.discovery.server-addr}
       username: ${spring.cloud.nacos.discovery.username}
       password: ${spring.cloud.nacos.discovery.password}
-      group: SEATA_GROUP
 
 
 

@@ -51,7 +51,7 @@
             <exclusions>
                 <exclusion>
                     <groupId>io.seata</groupId>
-                    <artifactId>seata-all</artifactId>
+                    <artifactId>seata-spring-boot-starter</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
