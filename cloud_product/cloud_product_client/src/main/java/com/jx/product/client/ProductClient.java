@@ -15,6 +15,6 @@ public interface ProductClient {
     @RequestMapping("/product/serverPort")
     Rs serverPort();
 
-    @GetMapping("updateProductStock")
+    @GetMapping("/product/updateProductStock")
      Rs updateProductStock(@RequestParam("productId")Long productId,@RequestParam("stock") Integer stock);
 }

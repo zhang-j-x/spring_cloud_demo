@@ -6,6 +6,8 @@ import com.jx.product.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * @Description:
  * @Author: zhangjx
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl implements IProductService {
 
-    @Autowired
+    @Resource
     ProductMapper productMapper;
 
     @Override

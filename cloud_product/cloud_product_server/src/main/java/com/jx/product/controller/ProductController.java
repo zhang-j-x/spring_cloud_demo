@@ -34,6 +34,7 @@ public class ProductController {
 
     @GetMapping("updateProductStock")
     public Rs qryProductInfo(Long productId,Integer stock){
+        log.info("更新库存...");
         productService.updateProductInfo(productId,stock);
         return Rs.success();
     }

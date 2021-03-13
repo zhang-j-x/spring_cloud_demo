@@ -12,8 +12,9 @@ public interface IProductService {
     Product getProductInfo(Long  productId);
 
     /**
-     * 更新产品
-     * @param product
+     *
+     * @param productId
+     * @param stock
      */
-    void updateProductInfo(Long productId,Integer stock);
+    void updateProductInfo( Long productId, Integer stock);
 }

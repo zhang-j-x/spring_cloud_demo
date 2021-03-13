@@ -10,7 +10,7 @@
 
     <parent>
         <groupId>com.jx</groupId>
-        <artifactId>spring_cloud_demo</artifactId>
+        <artifactId>cloud_order</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     

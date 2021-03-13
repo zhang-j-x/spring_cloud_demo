@@ -21,7 +21,7 @@
 
 
     <update id="updateProductStock" >
-        update product set product_stock = product_stock - #{count} where product_id = #{productId}
+        update product set product_stock = (product_stock - #{count}) where product_id = #{productId}
     </update>
 
 </mapper>
