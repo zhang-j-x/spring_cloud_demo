@@ -37,7 +37,7 @@ public class OrderServiceImpl implements IOrderService {
 
 
     @Override
-    @GlobalTransactional(rollbackFor = Exception.class)
+    @GlobalTransactional(name = "order-createOrder")
     public void createOrder(PlaceOrderForm order) {
         //1、生成订单
         DynamicDataSourceContextHolder.setDataSourceKey(DataSourceKey.MASTER);

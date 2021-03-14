@@ -22,7 +22,6 @@ spring:
 #      type: web #数据传输方式
 
 seata:
-  enable-auto-data-source-proxy: false
   tx-service-group: cloud-demo-tx-group
   application-id: ${spring.application.name}
   config:

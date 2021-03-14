@@ -48,11 +48,11 @@ public class OrderController {
     @PostMapping("placeOrder")
     @SentinelResource(value = "placeOrder")
     public Rs placeOrder(@RequestBody PlaceOrderForm placeOrder){
-        try {
+//        try {
             orderService.createOrder(placeOrder);
-        }catch (OrderCreateException e){
-            return Rs.fail(e.getMessage());
-        }
+//        }catch (OrderCreateException e){
+//            return Rs.fail(e.getMessage());
+//        }
         return Rs.success();
     }
 
