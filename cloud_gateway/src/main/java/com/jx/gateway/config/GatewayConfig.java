@@ -1,4 +1,4 @@
-package com.jx.order.config;
+package com.jx.gateway.config;
 
 import org.springframework.context.annotation.Configuration;
 

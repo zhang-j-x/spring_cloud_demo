@@ -1,4 +1,4 @@
-package com.jx.product.vo.common;
+package com.jx.common.vo.common;
 
 import java.io.Serializable;
 
@@ -12,13 +12,13 @@ public interface IResult extends Serializable {
      *
      * @return String
      */
-    String getMessage();
+    String getMsg();
 
     /**
      * 状态码
      *
      * @return int
      */
-    int getCode();
+    Integer getCode();
 
 }

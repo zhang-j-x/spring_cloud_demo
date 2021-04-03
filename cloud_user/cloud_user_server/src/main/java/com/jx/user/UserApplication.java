@@ -1,20 +1,18 @@
-package com.jx.order;
+package com.jx.user;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-/**
- * @Description:
- * @Author: zhangjx
- * @Date: 2021-01-28
- **/
-@EnableDiscoveryClient
 @SpringBootApplication
-public class GatewayApplication {
+@EnableDiscoveryClient
+@MapperScan("com.jx.user.dao")
+public class UserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayApplication.class, args);
+        SpringApplication.run(UserApplication.class, args);
+
     }
 
 }

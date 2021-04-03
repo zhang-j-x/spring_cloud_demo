@@ -1,14 +1,13 @@
-package com.jx.product.vo.common;
+package com.jx.common.vo.common;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
  * 业务代码枚举
  */
 @Getter
-@AllArgsConstructor
-public enum ResultEnum implements IResult {
+public enum ResultEnum implements IResult{
+
 
     /**
      * 操作成功
@@ -25,13 +24,21 @@ public enum ResultEnum implements IResult {
      */
     NO_DATA(2, "无数据");
 
+    ResultEnum(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+
     /**
      * code编码
      */
-    final int code;
+     private Integer code;
     /**
      * 中文信息描述
      */
-    final String message;
+    private String msg;
+
+
 
 }

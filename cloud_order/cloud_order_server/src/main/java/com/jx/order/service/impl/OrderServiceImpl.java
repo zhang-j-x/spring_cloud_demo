@@ -11,6 +11,7 @@ import com.jx.order.entity.enums.OrderStatusEnum;
 import com.jx.order.form.PlaceOrderForm;
 import com.jx.order.service.IOrderService;
 import com.jx.product.client.ProductClient;
+import io.seata.spring.annotation.GlobalLock;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,7 @@ public class OrderServiceImpl implements IOrderService {
 
 
     @Override
+
     @GlobalTransactional(name = "order-createOrder")
     public void createOrder(PlaceOrderForm order) {
         //1、生成订单
@@ -72,5 +74,12 @@ public class OrderServiceImpl implements IOrderService {
         newOrder.setOrderAmount(amount);
         DynamicDataSourceContextHolder.setDataSourceKey(DataSourceKey.MASTER);
         orderMapper.updateById(newOrder);
+    }
+
+    public static void main(String[] args) {
+        double a = 0.1;
+        double b = 0.2;
+
+        System.out.println(BigDecimal.valueOf(a).add(BigDecimal.valueOf(b)));
     }
 }

@@ -1,0 +1,48 @@
+server:
+  port: 810
+spring:
+  application:
+    name: user
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
+        file-extension: yml
+#图片验证码相关属性
+#图片宽度
+jx.security.validateCode.imageCode.imgWidth: 100
+#图片高度
+jx.security.validateCode.imageCode.imgHeight: 30
+#验证码字符数
+jx.security.validateCode.imageCode.codeNum: 4
+#验证码图片干扰线数量
+jx.security.validateCode.imageCode.lineCount: 50
+#验证码过期时间
+jx.security.validateCode.imageCode.expireTime: 60
+#需要图形验证码的url
+jx.security.validateCode.imageCode.urls: /auth/login
+#前端传过来的uuid对应参数名
+jx.security.validateCode.imageCode.uuidParamName: imageCodeUuid
+#前端传过来的验证码对应参数名
+jx.security.validateCode.imageCode.validateCodeParamName: imageValidateCode
+
+#短信验证码相关属性
+#验证码字符数
+jx.security.validateCode.smsCode.codeNum: 4
+#需要短信验证码的url
+jx.security.validateCode.smsCode.urls:
+#前端传过来的uuid对应参数名
+jx.security.validateCode.smsCode.uuidParamName: smsCodeUuid
+#前端传过来的验证码对应参数名
+jx.security.validateCode.smsCode.validateCodeParamName: smsValidateCode
+#前端传过来的电话号码对应参数名
+jx.security.validateCode.smsCode.phoneNumberParamName: phoneNumber
+logging:
+  level:
+    org.springframework: debug
+

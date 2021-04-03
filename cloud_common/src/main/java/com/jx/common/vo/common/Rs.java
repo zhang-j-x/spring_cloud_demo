@@ -1,10 +1,5 @@
 package com.jx.common.vo.common;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 import java.io.Serializable;
 
 
@@ -12,10 +7,6 @@ import java.io.Serializable;
  * 统一API响应结果封装
  *
  */
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
 public class Rs<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,23 +28,25 @@ public class Rs<T> implements Serializable {
      */
     private String msg;
 
+    public Rs() {
+    }
 
-    private Rs(com.jx.product.vo.common.IResult resultCode, T data) {
-        this.code = resultCode.getCode();
-        this.msg = resultCode.getMessage();
+    private Rs(IResult result, T data) {
+        this.code = result.getCode();
+        this.msg = result.getMsg();
         this.success = true;
         this.data = data;
     }
 
-    private Rs(com.jx.product.vo.common.IResult resultCode) {
+    private Rs(IResult result) {
         this.success = false;
-        this.code = resultCode.getCode();
-        this.msg = resultCode.getMessage();
+        this.code = result.getCode();
+        this.msg = result.getMsg();
     }
 
-    private Rs(com.jx.product.vo.common.IResult resultCode, String msg) {
+    private Rs(IResult result, String msg) {
         this.success = false;
-        this.code = resultCode.getCode();
+        this.code = result.getCode();
         this.msg = msg;
     }
 
@@ -64,11 +57,11 @@ public class Rs<T> implements Serializable {
      * @return R
      */
     public static <T> Rs<T> success(T data) {
-        return new Rs<T>(com.jx.product.vo.common.ResultEnum.SUCCESS, data);
+        return new Rs<T>(ResultEnum.SUCCESS, data);
     }
 
     public static <T> Rs<T> success() {
-        return new Rs<T>(com.jx.product.vo.common.ResultEnum.SUCCESS);
+        return new Rs<T>(ResultEnum.SUCCESS);
     }
 
     /**
@@ -78,7 +71,7 @@ public class Rs<T> implements Serializable {
      * @return R
      */
     public static <T> Rs<T> fail(String msg) {
-        return new Rs<>(com.jx.product.vo.common.ResultEnum.FAILURE, msg);
+        return new Rs<T>(ResultEnum.FAILURE, msg);
     }
 
 
@@ -88,8 +81,8 @@ public class Rs<T> implements Serializable {
      * @param resultCode 业务代码
      * @return R
      */
-    public static <T> Rs<T> fail(com.jx.product.vo.common.IResult resultCode) {
-        return new Rs<>(resultCode);
+    public static <T> Rs<T> fail(IResult resultCode) {
+        return new Rs<T>(resultCode);
     }
 
 
@@ -98,7 +91,38 @@ public class Rs<T> implements Serializable {
      * @return R
      */
     public static <T> Rs<T> empty() {
-        return new Rs<>(com.jx.product.vo.common.ResultEnum.NO_DATA);
+        return new Rs<T>(ResultEnum.NO_DATA);
     }
 
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }
