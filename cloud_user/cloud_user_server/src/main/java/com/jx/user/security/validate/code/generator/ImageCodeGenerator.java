@@ -2,7 +2,7 @@ package com.jx.user.security.validate.code.generator;
 
 
 
-import com.jx.user.config.properties.SecurityProperties;
+import com.jx.user.security.properties.SecurityProperties;
 import com.jx.user.security.validate.code.constant.ValidateCodeConstant;
 import com.jx.user.security.validate.code.dto.ValidateCode;
 import com.jx.user.security.validate.code.dto.ValidateImageCode;

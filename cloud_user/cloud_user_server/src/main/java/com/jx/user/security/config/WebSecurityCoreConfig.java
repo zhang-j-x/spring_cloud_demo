@@ -1,12 +1,12 @@
 package com.jx.user.security.config;
 
 import com.jx.common.vo.common.Rs;
-import com.jx.user.config.properties.SecurityProperties;
 import com.jx.user.enums.LoginRcEnum;
 import com.jx.user.security.filter.FilterManageSecurityConfig;
 import com.jx.user.security.filter.usernamepwd.MyUserNamePasswordAuthenticationFilter;
 import com.jx.user.util.ResponseWriterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -180,7 +180,7 @@ public class WebSecurityCoreConfig extends WebSecurityConfigurerAdapter {
 
 
     /**
-     * 重写定义ConcurrentSessionFilter 中session失效策略
+     * 手动创建ConcurrentSessionFilter并重写session失效策略
      * @return
      */
     @Bean

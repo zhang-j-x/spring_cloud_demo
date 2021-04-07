@@ -2,7 +2,7 @@ package com.jx.user.security.filter.validatecode;
 
 
 import com.alibaba.nacos.common.utils.ConcurrentHashSet;
-import com.jx.user.config.properties.SecurityProperties;
+import com.jx.user.security.properties.SecurityProperties;
 import com.jx.user.security.config.MyAuthenticationFailureHandler;
 import com.jx.user.security.validate.code.constant.ValidateCodeConstant;
 import com.jx.user.security.validate.code.dto.ResultDto;

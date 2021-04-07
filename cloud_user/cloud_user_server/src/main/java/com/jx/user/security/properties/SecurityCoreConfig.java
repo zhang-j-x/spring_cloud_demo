@@ -1,4 +1,4 @@
-package com.jx.user.config.properties;
+package com.jx.user.security.properties;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

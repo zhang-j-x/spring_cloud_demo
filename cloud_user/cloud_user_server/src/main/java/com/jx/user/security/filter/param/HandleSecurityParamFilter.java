@@ -1,7 +1,7 @@
 package com.jx.user.security.filter.param;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jx.user.config.properties.SecurityProperties;
+import com.jx.user.security.properties.SecurityProperties;
 import com.jx.user.util.BufferedServletRequestWrapper;
 import com.jx.user.util.ParameterRequestWrapper;
 import org.springframework.beans.factory.annotation.Autowired;

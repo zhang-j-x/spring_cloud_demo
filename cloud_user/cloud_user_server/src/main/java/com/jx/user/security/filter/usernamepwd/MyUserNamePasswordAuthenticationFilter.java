@@ -1,7 +1,7 @@
 package com.jx.user.security.filter.usernamepwd;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jx.user.config.properties.SecurityProperties;
+import com.jx.user.security.properties.SecurityProperties;
 import com.jx.user.util.BufferedServletRequestWrapper;
 import com.jx.user.util.RsaEncryptUtil;
 import lombok.extern.slf4j.Slf4j;

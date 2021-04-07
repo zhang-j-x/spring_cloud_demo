@@ -1,4 +1,4 @@
-package com.jx.user.config.properties;
+package com.jx.user.security.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
