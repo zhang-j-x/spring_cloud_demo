@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Base64;
-
 /**
  * springSecurity  密码加密
  * @Author: zhangjx
@@ -22,10 +20,11 @@ public class PasswordEncoderConfig {
 
 
     public static void main(String[] args) {
-//        BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();
+        BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();
 //        String encode = bCryptPasswordEncoder.encode("zjx!@#123");
-//        System.out.println(encode);
-//
+        String encode = bCryptPasswordEncoder.encode("123456");
+        System.out.println(encode);
+
 //        String hashInfo = DigestUtils.md5Hex("18871757365@163.com" + ":" + "2021-04-16T14:34:06.599Z"
 //                + ":" + "$10$KyHG9EUXOv8c2ltTGESmZuqCHeA.YGuh/VuJRYTnKUTrRwQ396BGm"
 //                + ":" + "security_token_key");
@@ -34,8 +33,8 @@ public class PasswordEncoderConfig {
 //                ":" + hashInfo).getBytes());
 //        System.out.println("hashInfo : " + hashInfo);
 //        System.out.println("rememberCookie : " + rememberCookie);
-        byte[] bytes = Base64.getDecoder().decode("MTg4NzE3NTczNjUlNDAxNjMuY29tOjE2MTg1ODM2NDY1OTg6ZjM0NDA5ZmJhYmVhMmE1NWQ3ZjQwZjVlOWUxZTRhODY");
-
-        System.out.println(new String(bytes));
+//        byte[] bytes = Base64.getDecoder().decode("MTg4NzE3NTczNjUlNDAxNjMuY29tOjE2MTg1ODM2NDY1OTg6ZjM0NDA5ZmJhYmVhMmE1NWQ3ZjQwZjVlOWUxZTRhODY");
+//
+//        System.out.println(new String(bytes));
     }
 }
