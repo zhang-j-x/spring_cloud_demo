@@ -26,9 +26,8 @@ public class UserController {
      *
      */
     @GetMapping("getLoginUserInfo")
-    public Authentication getLoginUserInfo(){
+    public Authentication getLoginUserInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        MyWebAuthenticationDetails details = (MyWebAuthenticationDetails) authentication.getDetails();
         return authentication;
     }
 
@@ -37,7 +36,7 @@ public class UserController {
      * @return
      */
     @GetMapping("getKey")
-    public Rs getKey(){
+    public Rs getKey() {
         return Rs.success(rsaEncryptUtil.getPublicKey());
     }
 }

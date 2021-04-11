@@ -2,7 +2,7 @@ package com.jx.user.security.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author: zhangjx
@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
  */
 @ConfigurationProperties(prefix = "jx.security")
 @Data
-@Component
+@Configuration
 public class SecurityProperties {
     private BrowserProperties browser = new BrowserProperties();
 
     private ValidateCodeProperties validateCode = new ValidateCodeProperties();
+
 }

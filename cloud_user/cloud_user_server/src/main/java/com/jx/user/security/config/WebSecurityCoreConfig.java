@@ -4,23 +4,23 @@ import com.jx.common.vo.common.Rs;
 import com.jx.user.enums.LoginRcEnum;
 import com.jx.user.security.filter.FilterManageSecurityConfig;
 import com.jx.user.security.filter.usernamepwd.MyUserNamePasswordAuthenticationFilter;
+import com.jx.user.security.properties.SecurityProperties;
 import com.jx.user.util.ResponseWriterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.session.*;
 import org.springframework.security.web.session.ConcurrentSessionFilter;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+import org.springframework.session.FindByIndexNameSessionRepository;
+import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -55,11 +55,24 @@ public class WebSecurityCoreConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userService;
 
     @Resource
+    FindByIndexNameSessionRepository sessionRepository;
+
+
+    @Resource
     MyLogoutSuccessHandler logoutSuccessHandler;
 
+//    @Bean
+//    SessionRegistryImpl sessionRegistry() {
+//        return new SessionRegistryImpl();
+//    }
+
+    /***
+     * 分布式环境下Spring seeison控制会话
+     * @return
+     */
     @Bean
-    SessionRegistryImpl sessionRegistry() {
-        return new SessionRegistryImpl();
+    SpringSessionBackedSessionRegistry sessionRegistry() {
+        return new SpringSessionBackedSessionRegistry(sessionRepository);
     }
 
     /**
@@ -109,11 +122,11 @@ public class WebSecurityCoreConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices(){
-        JdbcTokenRepositoryImpl persistentTokenRepository = new JdbcTokenRepositoryImpl();
+        var persistentTokenRepository = new JdbcTokenRepositoryImpl();
         persistentTokenRepository.setDataSource(dataSource);
         //没有指定时key为一个UUID字符串，重启服务后，key重新生成，重启后所有的自动登录cookie失效。
         // 分布式多实例部署下，由于实例间key不同，当已认证用户访问另一个实例时，自动登录策略失效
-        PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices = new PersistentTokenBasedRememberMeServices(
+        var persistentTokenBasedRememberMeServices = new PersistentTokenBasedRememberMeServices(
                 "security_token_key", userService,persistentTokenRepository);
         //前端参数名
         persistentTokenBasedRememberMeServices.setParameter(securityProperties.getBrowser().getLoginRememberMeParamName());
@@ -161,24 +174,6 @@ public class WebSecurityCoreConfig extends WebSecurityConfigurerAdapter {
 
 
 
-
-    /**
-     * 是通过监听 session 的销毁事件，来及时的清理 session 的记录。用户从不同的浏览器登录后，
-     * 都会有对应的 session，当用户注销登录之后，session 就会失效，但是默认的失效是通过调用
-     * StandardSession#invalidate 方法来实现的，这一个失效事件无法被 Spring 容器感知到，
-     * 进而导致当用户注销登录之后，Spring Security 没有及时清理会话信息表
-     *
-     * 提供一个 HttpSessionEventPublisher ，这个类实现了 HttpSessionListener 接口，
-     * 在该 Bean 中，可以将 session 创建以及销毁的事件及时感知到，
-     * 并且调用 Spring 中的事件机制将相关的创建和销毁事件发布出去，进而被 Spring Security 感知到
-     * @return
-     */
-    @Bean
-    HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
-    }
-
-
     /**
      * 手动创建ConcurrentSessionFilter并重写session失效策略
      * @return
@@ -216,7 +211,6 @@ public class WebSecurityCoreConfig extends WebSecurityConfigurerAdapter {
             )
             .csrf(csrf -> csrf.disable());
     }
-
 
 
 }
